@@ -4,12 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -17,12 +14,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import com.compose.todo.TodoIcon
-import com.compose.todo.TodoItem
 import com.compose.ui.theme.BasicComposeTheme
 
 class TodoActivity : ComponentActivity() {
+    private val viewModel by viewModels<TodoViewModel>()
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +37,13 @@ class TodoActivity : ComponentActivity() {
                             title = { Text("Todo List") }
                         )
                     },
-                    floatingActionButton = {
-                        FloatingActionButton(onClick = {  }) {
-                            Icon(Icons.Default.Add, contentDescription = "Add")
-                        }
-                    }
+//                    floatingActionButton = {
+//                        FloatingActionButton(onClick = {
+//                            Toast.makeText(this, "Test Button Func", Toast.LENGTH_LONG).show()
+//                        }) {
+//                            Icon(Icons.Default.Add, contentDescription = "Add")
+//                        }
+//                    }
                 ) { innerPadding ->
                     Surface(modifier = Modifier.padding(innerPadding)) {
                         TodoActivityScreen()
@@ -55,17 +55,17 @@ class TodoActivity : ComponentActivity() {
 
     @Composable
     fun TodoActivityScreen() {
-        val items = listOf(
-            TodoItem("Learn Compose", TodoIcon.Event),
-            TodoItem("Build something fun!", TodoIcon.Square),
-            TodoItem("Wash dishes", TodoIcon.Done),
-            TodoItem("Prepare breakfast", TodoIcon.Event),
-            TodoItem("Take out the trash", TodoIcon.Trash),
-            TodoItem("Finish report", TodoIcon.Privacy),
-            TodoItem("Take a walk", TodoIcon.Event),
-            TodoItem("Watch a movie", TodoIcon.Event),
+//        val items = viewModel.todoItems.value ?: emptyList()
+        val items by viewModel.todoItems.observeAsState(emptyList())
+        val editingItem by viewModel.editingItem.observeAsState()
+        TodoScreen(
+            items,
+            editingItem,
+            onAddItem =  viewModel::addTodoItem,
+            onRemoveItem = viewModel::removeTodoItem,
+            onUpdateItem = viewModel::updateCurrEditingItem,
+            onSaveEditItem = viewModel::saveEditingItem
         )
-        TodoScreen(items)
     }
 }
 
