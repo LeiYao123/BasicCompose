@@ -8,6 +8,7 @@ import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -46,6 +47,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import com.compose.todo.TodoIcon
 import com.compose.todo.TodoItem
+import com.compose.ui.theme.RuTheme
 import com.compose.util.generatorRandomTodoItem
 import kotlin.random.Random
 
@@ -112,19 +114,15 @@ fun ItemRows(index: Int, item: TodoItem, onClick: () -> Unit) {
 fun TodoRandomForAdd(onAddItem: (TodoItem) -> Unit) {
     Button(
         onClick = { onAddItem(generatorRandomTodoItem()) },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = RuTheme.colors.bgWhite,
+            contentColor = RuTheme.colors.primaryBase,
+        ),
+        border = BorderStroke(1.dp, RuTheme.colors.primaryBase),
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
-    ) {
-        Text(
-            "Add Random item",
-            color = LocalContentColor.current.copy(
-                red = randomTint(),
-                green = randomTint(),
-                blue = randomTint(),
-            )
-        )
-    }
+    ) { Text("Add Random item", style = RuTheme.typography.labelS) }
 }
 
 private fun randomTint(): Float {
@@ -161,7 +159,7 @@ fun TodoItemInlineEdit(
 ) {
     TodoInput(
         todoItem = item,
-        buttonSlot = { todoItem, callSubmit ->
+        buttonSlot = { todoItem, _ ->
             TextButton(
                 onClick = { onSaveItem(todoItem) },
                 enabled = todoItem.task.isNotBlank(),

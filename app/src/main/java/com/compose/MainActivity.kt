@@ -2,7 +2,6 @@
 package com.compose
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateColorAsState
@@ -38,16 +37,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.compose.ui.theme.BasicComposeTheme
+import com.compose.ui.theme.RuTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
-    private lateinit var view: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // enableEdgeToEdge()
         setContent {
-            BasicComposeTheme  { Conversations(SampleData.conversationSample) }
+            RuTheme { Conversations(SampleData.conversationSample) }
         }
     }
 }

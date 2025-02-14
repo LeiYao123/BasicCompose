@@ -17,7 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import com.compose.ui.theme.BasicComposeTheme
+import com.compose.ui.theme.RuTheme
 
 class TodoActivity : ComponentActivity() {
     private val viewModel by viewModels<TodoViewModel>()
@@ -26,7 +26,7 @@ class TodoActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            BasicComposeTheme {
+            RuTheme {
                 Scaffold(
                     topBar = {
                         TopAppBar(
@@ -36,14 +36,7 @@ class TodoActivity : ComponentActivity() {
                             ),
                             title = { Text("Todo List") }
                         )
-                    },
-//                    floatingActionButton = {
-//                        FloatingActionButton(onClick = {
-//                            Toast.makeText(this, "Test Button Func", Toast.LENGTH_LONG).show()
-//                        }) {
-//                            Icon(Icons.Default.Add, contentDescription = "Add")
-//                        }
-//                    }
+                    }
                 ) { innerPadding ->
                     Surface(modifier = Modifier.padding(innerPadding)) {
                         TodoActivityScreen()
