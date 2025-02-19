@@ -5,14 +5,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.staticCompositionLocalOf
 
 
 val LocalCustomColors = compositionLocalOf<RuColors> {
     error("No CustomColors provided")
 }
 
-val LocalCustomTypography = staticCompositionLocalOf<RuTypography> {
+val LocalCustomTypography = compositionLocalOf<RuTypography> {
     error("No CustomTypography provided")
 }
 
@@ -24,7 +23,7 @@ fun RuTheme(
     val colors = if (darkTheme) darkRuColor() else lightRuColor()
     val typography = RuTypography()
     CompositionLocalProvider(
-        LocalCustomColors provides colors,
+        LocalCustomColors.provides(colors), // 中缀调用
         LocalCustomTypography provides typography
     ) {
         MaterialTheme(content = content)
