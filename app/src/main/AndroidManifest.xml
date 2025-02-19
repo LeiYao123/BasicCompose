@@ -13,6 +13,17 @@
         android:theme="@style/Theme.BasicCompose"
         tools:targetApi="31">
         <activity
+            android:name=".animate.AnimateActivity"
+            android:exported="true"
+            android:label="@string/title_activity_animate"
+            android:theme="@style/Theme.BasicCompose">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".todo.one.TodoActivity"
             android:exported="true"
             android:label="@string/title_activity_todo"

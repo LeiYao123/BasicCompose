@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BasicCompose</string>
     <string name="title_activity_todo">TodoActivity</string>
+    <string name="title_activity_animate">AnimateActivity</string>
 </resources>

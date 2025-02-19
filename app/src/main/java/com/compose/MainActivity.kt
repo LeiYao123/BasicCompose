@@ -137,13 +137,6 @@ data class Message(val author: String, val body: String)
 
 
 
-@Composable
-fun MyColumn(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
-
-}
-
-
-
 // 用不着的函数，写着玩的
 // =====================================================================================================
 fun helloX(action: () -> Unit) {
