@@ -5,6 +5,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 
@@ -12,9 +13,14 @@ import androidx.compose.ui.graphics.Color
 fun HomeTabBar(
     backgroundColor: Color,
     tabPage: TabPage,
+    modifier: Modifier = Modifier,
     onTabSelected: (tabPage: TabPage) -> Unit
 ) {
-    TabRow(selectedTabIndex = tabPage.ordinal, containerColor = backgroundColor) {
+    TabRow(
+        selectedTabIndex = tabPage.ordinal,
+        containerColor = backgroundColor,
+        modifier = modifier
+    ) {
         TabPage.entries.map {
             Tab(selected = it == tabPage, onClick = { onTabSelected(it) }) {
                 val color = Color.Black

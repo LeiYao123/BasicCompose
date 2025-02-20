@@ -42,16 +42,12 @@ class AnimateActivity : ComponentActivity() {
     }
 }
 
-val Blue400 = Color.Blue.copy(alpha = .4f)
-val Yellow400 = Color.Yellow.copy(alpha = .4f)
-
-
 @Composable
 fun PageContent() {
     var tabPage by remember { mutableStateOf(TabPage.Home) }
     // 简单值动画
     val backgroundColor by animateColorAsState(
-        if (tabPage == TabPage.Home) Blue400 else Yellow400, label = "",
+        tabPage.color, label = "",
         animationSpec = tween(2000)
     )
 

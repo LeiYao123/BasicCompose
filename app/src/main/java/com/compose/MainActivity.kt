@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -34,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -70,15 +72,22 @@ fun MessageCard(msg: Message, index: Int) {
             Text("$index - ${msg.author}", color = MaterialTheme.colorScheme.primary)
             Spacer(modifier = Modifier.height(8.dp))
             Surface(
-                color = surfaceColor,
+                // 背景颜色
+                color = Color.Red,
+                // 内容颜色
+                contentColor = Color.White,
                 shape = MaterialTheme.shapes.medium,
+                tonalElevation = 2.dp,
                 shadowElevation = 2.dp,
+//                border = BorderStroke(width = 3.dp, color = Color.Red),
+//                border = BorderStroke(width = 3.dp, brush = Brush.sweepGradient(listOf(Color.Red, Color.Blue))),
                 modifier = Modifier
                     .animateContentSize()
                     .padding(1.dp)
             ) {
                 Text(
                     msg.body,
+                    color = Color.Green,
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = if (isExpanded) Int.MAX_VALUE else 1,
                 )
