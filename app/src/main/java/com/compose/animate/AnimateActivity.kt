@@ -97,9 +97,7 @@ fun PageContent() {
                     tabPage = tabPage,
                     onTabSelected = { tabPage = it }
                 )
-                AnimatedVisibility(
-                    showEdit,
-                ) {
+                AnimatedVisibility(showEdit) {
                     Surface(
                         modifier = Modifier.fillMaxWidth(),
                         color = RuTheme.colors.successBase,
