@@ -13,20 +13,36 @@
         android:theme="@style/Theme.BasicCompose"
         tools:targetApi="31">
         <activity
+            android:name=".effect.EffectActivity"
+            android:exported="true"
+            android:label="@string/title_activity_effect"
+            android:theme="@style/Theme.BasicCompose">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".navigation.NavigationActivity"
             android:exported="true"
             android:label="@string/title_activity_navigation"
             android:theme="@style/Theme.BasicCompose">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <!-- 配置 deep link -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="rally" android:host="detail" />
+
+                <data
+                    android:host="detail"
+                    android:scheme="rally" />
             </intent-filter>
         </activity>
         <activity
